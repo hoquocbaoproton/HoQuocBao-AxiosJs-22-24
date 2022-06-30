@@ -1,4 +1,5 @@
 export const resetForm = () => {
+  document.getElementById('TaiKhoan').disabled = false;
   document.getElementById('TaiKhoan').value = '';
   document.getElementById('HoTen').value = '';
   document.getElementById('MatKhau').value = '';

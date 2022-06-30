@@ -33,8 +33,6 @@ const updateUser = async (user) => {
       action
     );
 
-    console.log(isValid);
-
     if (!isValid) return;
 
     const updatedUser = new User(
@@ -52,6 +50,8 @@ const updateUser = async (user) => {
     updateUserToApi(updatedUser).then(() => {
       initialUsersList();
     });
+
+    resetForm();
     return;
   } catch (error) {
     let newErrorMessage = error.message;

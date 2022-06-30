@@ -1,4 +1,7 @@
-import { getUsersDataFromApi } from '../models/modelsApi.js';
+import {
+  delUserDataFromApi,
+  getUsersDataFromApi,
+} from '../models/modelsApi.js';
 import {
   accountInput,
   descInput,
@@ -33,18 +36,9 @@ const accountCheckAdd = (account) => {
   }
 };
 
-// const accountCheckUpdate = (account) => {
-//   // const otherUserAccounts = usersData
-//   //   .filter((user) => user.account !== account)
-//   //   .map((user) => user.account);
-
-//   if (!isRequired(account)) {
-//     accountInput.nextElementSibling.innerHTML = 'không được để trống';
-//     return false;
-//   } else if (account) {
-//     return true;
-//   }
-// };
+const accountCheckUpdate = (account) => {
+  return true;
+};
 
 const nameCheck = (name) => {
   const namePattern = new RegExp('^[A-Za-z_ ]+$');
@@ -144,14 +138,21 @@ export const checkValidation = (
 ) => {
   let isValid;
 
-  let accountIsValid;
-  if (action === 'add') {
-    accountIsValid = accountCheckAdd(account);
-    console.log(accountIsValid);
-  } else if (action === 'update') {
-    console.log(action);
-    accountIsValid = accountCheckAdd(account);
+  let accountIsValid = true;
+  switch (action) {
+    case 'add':
+      accountIsValid = accountCheckAdd(account);
+      break;
+    default:
+      break;
   }
+
+  // if (action === 'add') {
+  //   accountIsValid = accountCheckAdd(account);
+  // } else if (action === 'update') {
+  //   accountIsValid = accountCheckUpdate(account);
+  //   console.log(124);
+  // }
   const nameIsValid = nameCheck(name);
   const passIsValid = passwordCheck(password);
   const emailIsValid = emailCheck(email);
@@ -160,7 +161,6 @@ export const checkValidation = (
   const roleIsValid = roleCheck(role);
   const descIsValid = descCheck(desc);
 
-  console.log(accountIsValid);
   if (
     accountIsValid &&
     nameIsValid &&

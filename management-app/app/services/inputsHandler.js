@@ -25,7 +25,8 @@ export const getValueFromInput = () => {
 export const fillValueToInput = (user) => {
   const { account, name, password, email, image, lang, role, desc } = user;
 
-  document.getElementById('TaiKhoan').value = account || '';
+  document.getElementById('TaiKhoan').value = account;
+  document.getElementById('TaiKhoan').disabled = true;
   document.getElementById('HoTen').value = name || '';
   document.getElementById('MatKhau').value = password || '';
   document.getElementById('Email').value = email || '';

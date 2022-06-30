@@ -13,10 +13,16 @@ import { resetForm } from '../services/resetForm.js';
 import { initialUsersList } from './viewUsers.js';
 import { checkValidation } from '../services/validation.js';
 
+import { myModal } from '../services/elements.js';
+
 btnThemNguoiDung.addEventListener('click', function (e) {
   e.preventDefault();
 
   markupContentHandler('Thêm tài khoản', addButtonMarkup);
+  resetForm();
+  myModal.querySelectorAll('span').forEach((span) => {
+    span.innerHTML = '';
+  });
 
   const addUserBtn = document.getElementById('addUserBtn');
   addUserBtn.addEventListener('click', addUser);
